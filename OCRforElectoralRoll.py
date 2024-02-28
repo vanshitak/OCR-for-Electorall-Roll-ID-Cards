@@ -26,8 +26,8 @@ if not poppler_path.exists():
     raise FileNotFoundError(f"Poppler utils folder not found at {poppler_path}")
 
 # Set the path for input and output folders
-input_folder = Path(r"D:\OCR\input")
-output_folder = Path(r"D:\OCR\output")
+input_folder = Path(r"D:\OCR\test_folder")
+output_folder = Path(r"D:\OCR\test_output")
 
 if not input_folder.exists():
     raise FileNotFoundError(f"Input Folder not found at {input_folder}")
@@ -128,13 +128,13 @@ def extract_data(ocr_text, card_counter, output_dict):
             unique_id_match = re.search(r'\b[A-Z]+\d+\b', text)
             unique_id = unique_id_match.group() if unique_id_match else None
                 
-            name_match = re.search(r'Name\s*:\s*([A-Z\s.]+)', text)
+            name_match = re.search(r'Name\s*:\s*([A-Za-z\s.]+)', text)
             name = name_match.group(1).split('\n', 1)[0].strip() if name_match else None
 
-            father_name_match = re.search(r"Father's\s+Name\s*:\s*([A-Z\s.]+)", text)
+            father_name_match = re.search(r"Father's\s+Name\s*:\s*([A-Za-z\s.]+)", text)
             father_name = father_name_match.group(1).split('\n', 1)[0].strip() if father_name_match else None
                 
-            spouse_name_match = re.search(r"Name\s+of\s+Spouse\s*:\s*([A-Z\s.]+)", text)
+            spouse_name_match = re.search(r"Name\s+of\s+Spouse\s*:\s*([A-Za-z\s.]+)", text)
             spouse_name = spouse_name_match.group(1).split('\n', 1)[0].strip() if spouse_name_match else None
 
             house_number_match = re.search(r'House\s+Number\s*:\s*(\d+)?', text)
